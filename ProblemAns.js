@@ -92,19 +92,27 @@ console.log(jsCalculator(3, 4, "-"));
 
 
 // Task 6: Create a program that generates a random password of a specified length. The password should include a mix of uppercase letters, lowercase letters, numbers, and special characters.
-const  generateRandomPassword = length => {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[]{}|;:,.<>?';
+const passwordGenerator = length => {
+    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const lowercase = 'abcdefghijklmnopqrstuvwxyz';
+    const numbers = '0123456789';
+    const specialChar = '~!@#$%^&*-_';
+    const allChar = uppercase + lowercase + numbers + specialChar;
     let password = '';
-  
-    for (let i = 0; i < length; i++) {
-      const randomIndex = Math.floor(Math.random() * characters.length);
-      password += characters[randomIndex];
+
+    password += uppercase.charAt(Math.floor(Math.random() * uppercase.length))
+    password += lowercase.charAt(Math.floor(Math.random() * lowercase.length))
+    password += numbers.charAt(Math.floor(Math.random() * numbers.length))
+    password += specialChar.charAt(Math.floor(Math.random() * specialChar.length))
+
+    while (password.length < length) {
+        password += allChar.charAt(Math.floor(Math.random() * allChar.length))
     }
-  
+
     return password;
-  }
-  
-console.log("Random Password:", generateRandomPassword(8));
+}
+
+console.log(passwordGenerator(8));
 
 
 
